@@ -129,9 +129,9 @@ browser.credentials.onCredentialRequested.addListener(async function(credentialI
 			return true;
 		})
 		.filter(function(credential){
-			return credentialInfo.login?
-				credential.login === credentialInfo.login || credentialInfo.login === true:
-				credential.login;
+			return (typeof credentialInfo.login == "string" || credentialInfo.login)?
+					credential.login === credentialInfo.login || credentialInfo.login === true:
+					credential.login;
 		}).map(function(credential){
 			credential.skipAutoSubmit = credential.skipAutoSubmit === "true";
 			return credential;
